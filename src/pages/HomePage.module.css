@@ -1,0 +1,235 @@
+@font-face {
+  font-family: 'Satoshi-Variable';
+  src: url('../fonts/Satoshi-Variable.woff2') format('woff2'),
+    url('../fonts/Satoshi-Variable.woff') format('woff'),
+    url('../fonts/Satoshi-Variable.ttf') format('truetype');
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+:root {
+  --green: rgb(49, 212, 73);
+  --black: rgb(25, 25, 25);
+}
+/* everything */
+* {
+  box-sizing: border-box;
+  font-family: 'Satoshi-Variable';
+  margin: 0;
+  padding: 0;
+  /* border: 2px solid black; */
+}
+
+body {
+  color: var(--black);
+}
+/* ~~~~~~~~ Header code ~~~~~~~~ */
+header {
+  display: flex;
+  justify-content: space-between;
+  /* margin: 0 5em 5em 5em; */
+  background-color: rgba(162, 154, 154, 0.4);
+  padding: 1em 5em 2em 5em;
+  /* border-bottom: 1px solid rgba(190, 70, 94, 0.174); */
+}
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+}
+nav > ul > li {
+  margin: 0 1.2em;
+  font-size: 1rem;
+}
+
+.name::after {
+  content: 'gm';
+  font-size: 0.7rem;
+  font-weight: 500;
+  bottom: 20px;
+  display: inline-block;
+  animation: animategm 2s ease-out infinite alternate-reverse;
+  position: relative;
+}
+
+/* #gm {
+  font-size: 0.7rem;
+  font-weight: 500;
+
+  bottom: 20px;
+  animation: animategm 4s infinite alternate-reverse;
+  position: relative;
+} */
+
+@keyframes animategm {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    font-size: 20px;
+    color: #e3183d;
+  }
+}
+
+.date {
+  margin-top: 0.7em;
+}
+
+/* ~~~~~~~~ Main Body code ~~~~~~~~ */
+
+main {
+  margin: 1em 5em;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin: 2em 0;
+}
+
+.content {
+  justify-content: space-evenly;
+  background-color: rgba(255, 228, 196, 0.55);
+  border-radius: 3px;
+  padding: 2em 0;
+  border: 1px solid var(--black);
+}
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-start; */
+}
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.listItem {
+  background-color: #fb486b;
+  padding: 0.8em 2em;
+  margin: 0.5em 2em;
+  border: 1px solid var(--black);
+  border-radius: inherit;
+  width: 60%;
+  font-weight: 500;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.taskContent {
+  margin: 0.5em 0;
+  margin-right: 2em;
+  font-weight: 400;
+}
+.taskTitle {
+  font-weight: 500;
+  font-size: 1.25em;
+}
+.taskIndex {
+  margin-right: 2em;
+}
+.time {
+  border: 1px solid var(--black);
+  border-radius: inherit;
+}
+button {
+  background-color: var(--green);
+  padding: 0.5em 2em;
+  font-size: 1.2rem;
+  border-style: none;
+  border-radius: 12px;
+  color: var(--black);
+  margin: 0 0.2em;
+  /* box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2); */
+  /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: rgb(43, 184, 64);
+}
+
+.buttons > button {
+  font-size: 1em;
+}
+/* ADD BUTTON */
+.addBtn {
+  padding: 0.4em 1.6em;
+}
+/* DELETE BUTTON */
+.deleteBtn {
+  background-color: rgba(255, 255, 255, 0.2);
+  font-size: 1.05rem;
+  padding: 0.6em 0.5em;
+  transition: 120ms;
+}
+.deleteBtn:hover {
+  background-color: rgb(203, 61, 89);
+  color: white;
+}
+
+/* FORM CSS */
+.formContainer {
+  display: flex;
+  justify-content: center;
+  margin: 1em 0;
+}
+.addForm {
+  background-color: rgb(112, 222, 163);
+  padding: 2em 2em;
+  text-align: center;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+}
+.toDoContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5em;
+}
+.toDoHeading {
+  text-align: left;
+}
+.toDoLabel {
+  font-size: 1.5rem;
+}
+.addTaskInput {
+  padding: 0.5em 0.5em;
+  font-size: 1.1rem;
+  border: none;
+  width: 90%;
+  border-radius: inherit;
+  align-self: center;
+}
+.addTaskTitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin: 0.7em 0 0.3em 5%;
+  text-align: left;
+}
+.colorTitle {
+  margin: 1em 0;
+}
+.colorPicker {
+  display: flex;
+  justify-content: center;
+}
+
+.currentBtn {
+  text-decoration: underline;
+  border-radius: 12px 12px 0 0;
+  background-color: #fb486b;
+  box-shadow: none;
+}
+
+.currentBtn:hover {
+  background-color: #e3183d;
+}
+
+.completedBtn {
+}
