@@ -259,25 +259,33 @@ export default function HomePage() {
             ))}
           {active === '2' &&
             completedTask.map((completedTask, index) => (
-              <div
-                key={index}
-                className={styles.listItem}
-                style={{ backgroundColor: [completedTask.color] }}
-              >
-                <div className={styles.flex}>
-                  <p className={styles.taskIndex}>{index + 1}.</p>
+              <div key={index}>
+                <div
+                  className={styles.listItem}
+                  style={{ backgroundColor: [completedTask.color] }}
+                >
+                  <div className={styles.flex}>
+                    <p className={styles.taskIndex}>{index + 1}.</p>
+                    <div>
+                      <p
+                        className={`${styles.taskContent} ${styles.taskTitle}`}
+                      >
+                        {completedTask.taskTitle}
+                      </p>
+                      <p className={styles.taskContent}>{completedTask.task}</p>
+                    </div>
+                  </div>
                   <div>
-                    <p className={`${styles.taskContent} ${styles.taskTitle}`}>
-                      {completedTask.taskTitle}
-                    </p>
-                    <p className={styles.taskContent}>{completedTask.task}</p>
+                    <button
+                      onClick={() => deleteTaskFromArr(completedTask)}
+                      className={styles.deleteBtn}
+                    >
+                      remove
+                    </button>
                   </div>
                 </div>
-                <div>
-                  <button
-                    onClick={() => deleteTaskFromArr(completedTask)}
-                    className={styles.deleteBtn}
-                  ></button>
+                <div className={styles.time}>
+                  <p>Task created on {completedTask.taskTime}</p>
                 </div>
               </div>
             ))}
