@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from 'react';
+import '../App.css';
 import styles from './HomePage.module.css';
-import { TwitterPicker } from 'react-color'; //https://casesandberg.github.io/react-color/#api
-import Calendar from 'react-calendar'; //https://www.npmjs.com/package/react-calendar
+// import { TwitterPicker } from 'react-color'; //https://casesandberg.github.io/react-color/#api
+// import Calendar from 'react-calendar'; //https://www.npmjs.com/package/react-calendar
 import 'react-calendar/dist/Calendar.css';
 
-export default function HomePage() {
-  const [task, setTask] = useState('');
-  const [taskTitle, setTaskTitle] = useState('');
-  const [tasksArray, setTasksArray] = useState([]);
-  const [color, setColor] = useState('');
-  const [completeBy, setCompleteBy] = useState('');
+import './components/AddTaskForm';
+import AddTaskForm from './components/AddTaskForm';
+import Header from './components/Header';
 
-  const changeTask = (e) => setTask(e.target.value);
-  const changeTaskTitle = (e) => setTaskTitle(e.target.value);
+export default function HomePage() {
+  // const [task, setTask] = useState('');
+  // const [taskTitle, setTaskTitle] = useState('');
+  const [tasksArray, setTasksArray] = useState([]);
+  // const [color, setColor] = useState('');
+  // const [completeBy, setCompleteBy] = useState('');
+
+  // const changeTask = (e) => setTask(e.target.value);
+  // const changeTaskTitle = (e) => setTaskTitle(e.target.value);
 
   const [currentTime, setCurrentTime] = useState(new Date());
 
-  //update date and set currentTime at 1000 interval
+  // //update date and set currentTime at 1000 interval
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(new Date());
@@ -24,19 +29,19 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleChangeComplete = (color) => {
-    setColor(color.hex);
-    console.log(color.hex);
-  };
+  // const handleChangeComplete = (color) => {
+  //   setColor(color.hex);
+  //   console.log(color.hex);
+  // };
 
-  const completeByFunc = (completeDay) => {
-    // console.log(currentTime);
-    // console.log(completeDay);
-    setCompleteBy(completeDay.toLocaleDateString());
-    if (completeDay.toLocaleDateString() === currentTime.toLocaleDateString()) {
-      setCompleteBy('Today');
-    }
-  };
+  // const completeByFunc = (completeDay) => {
+  //   // console.log(currentTime);
+  //   // console.log(completeDay);
+  //   setCompleteBy(completeDay.toLocaleDateString());
+  //   if (completeDay.toLocaleDateString() === currentTime.toLocaleDateString()) {
+  //     setCompleteBy('Today');
+  //   }
+  // };
 
   // Add task function
   const addTaskToArray = (task, taskTitle, color, completeBy) => {
@@ -63,17 +68,17 @@ export default function HomePage() {
     }
   };
 
-  const submitTask = (e) => {
-    e.preventDefault();
-    if (completeBy === '') {
-      setCompleteBy('Unset');
-    }
-    if (task.length > 0) {
-      addTaskToArray(task, taskTitle, color, completeBy);
-    } else {
-      alert('Please input a task');
-    }
-  };
+  // const submitTask = (e) => {
+  //   e.preventDefault();
+  //   if (completeBy === '') {
+  //     setCompleteBy('Unset');
+  //   }
+  //   if (task.length > 0) {
+  //     addTaskToArray(task, taskTitle, color, completeBy);
+  //   } else {
+  //     alert('Please input a task');
+  //   }
+  // };
   // a function called deleteTaskFromArr that takes one parameter called taskToDelete.
   const deleteTaskFromArr = (taskToDelete) => {
     //filter method is called on tasksArray, which creates a new array containing only the elements that pass a certain test. In this case, the test is whether the element is not equal to taskToDelete,then setting the tasksArray state to this new array.
@@ -133,21 +138,25 @@ export default function HomePage() {
 
   return (
     <div>
-      <header>
+      {/* <header>
         <h1 className={styles.name}>
-          To Do Today
-          {/* <span id={styles.gm}>gm</span> */}
-        </h1>
+          To Do Today */}
+      {/* <span id={styles.gm}>gm</span> */}
+      {/* </h1>
         <nav>
           <ul>
             {/* <li>
               <button className={styles.startBtn}>Start</button>
             </li> */}
-            <li className={styles.date}>{currentTime.toLocaleTimeString()}</li>
+      {/* <li className={styles.date}>{currentTime.toLocaleTimeString()}</li>
             <li className={styles.date}>{currentTime.toLocaleDateString()}</li>
           </ul>
-        </nav>
-      </header>
+        </nav> */}
+      {/* </header> */}
+      <Header
+        currentTime={currentTime.toLocaleTimeString()}
+        currentDate={currentTime.toLocaleDateString()}
+      />
       <main>
         <div className={styles.container}>
           <h2>To do list:</h2>
@@ -159,7 +168,8 @@ export default function HomePage() {
           </div>
         </div>
         {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~  FORM TO ADD TASK ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
-        <div className={styles.formContainer}>
+        <AddTaskForm addTaskToArray={addTaskToArray} />
+        {/* <div className={styles.formContainer}>
           <form className={styles.addForm} onSubmit={submitTask}>
             <div className={styles.toDoContainer}>
               <div className={styles.toDoHeading}>
@@ -213,7 +223,7 @@ export default function HomePage() {
               </div>
             </div>
           </form>
-        </div>
+        </div> */}
         {/* ~~~~~~~~~~~~~~~~~~~ ACTIVE / COMPLETED BUTTONS  ~~~~~~~~~~~~~~~~~~~*/}
         <div>
           <button
