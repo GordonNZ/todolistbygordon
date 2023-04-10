@@ -40,7 +40,7 @@ export default function HomePage() {
 
   // Add task function
   const addTaskToArray = (task, taskTitle, color, completeBy) => {
-    const taskTime = currentTime.toLocaleTimeString();
+    const taskTime = `${currentTime.toDateString()} at ${currentTime.toLocaleTimeString()}`;
     const taskInfo = {
       task: task,
       taskTitle: taskTitle,
@@ -211,23 +211,10 @@ export default function HomePage() {
                   onChangeComplete={handleChangeComplete}
                 />
               </div>
-
-              {/* <div
-                className={`${styles.colorBox} ${styles[active]}`}
-                onClick={handleClick}
-              ></div>
-              <div
-                className={`${styles.colorBox2} ${styles[active]}`}
-                onClick={handleClick}
-              ></div>
-              <div
-                className={`${styles.colorBox3} ${styles[active]}`}
-                onClick={handleClick}
-              ></div> */}
             </div>
           </form>
         </div>
-
+        {/* ~~~~~~~~~~~~~~~~~~~ ACTIVE / COMPLETED BUTTONS  ~~~~~~~~~~~~~~~~~~~*/}
         <div>
           <button
             key={1}
@@ -260,81 +247,92 @@ export default function HomePage() {
           {active === '1' &&
             tasksArray.map((task, index) => (
               <div key={index}>
-                <div
-                  className={styles.listItem}
-                  style={{ backgroundColor: [task.color] }}
-                >
-                  <div className={styles.flex}>
-                    <p className={styles.taskIndex}>{index + 1}.</p>
+                <div className={styles.flexwrap}>
+                  <div
+                    className={styles.listItem}
+                    style={{ backgroundColor: [task.color] }}
+                  >
+                    <div className={styles.flex}>
+                      <p className={styles.taskIndex}>{index + 1}.</p>
+                      <div>
+                        <p
+                          className={`${styles.taskContent} ${styles.taskTitle}`}
+                        >
+                          {task.taskTitle}
+                        </p>
+                        <p className={styles.taskContent}>{task.task}</p>
+                      </div>
+                    </div>
                     <div>
-                      <p
-                        className={`${styles.taskContent} ${styles.taskTitle}`}
+                      <button
+                        className={`${styles.deleteBtn} ${styles.button}`}
+                        onClick={() => completeTask(task)}
                       >
-                        {task.taskTitle}
-                      </p>
-                      <p className={styles.taskContent}>{task.task}</p>
+                        complete
+                      </button>
+                      <button
+                        onClick={() => deleteTaskFromArr(task)}
+                        className={`${styles.deleteBtn} ${styles.button}`}
+                      >
+                        remove
+                      </button>
                     </div>
                   </div>
-                  <div>
-                    <button
-                      className={`${styles.deleteBtn} ${styles.button}`}
-                      onClick={() => completeTask(task)}
+                  <div className={styles.taskTime}>
+                    <p className={styles.taskCreatedOn}>Task created on</p>
+                    <p className={styles.taskCreatedOn}>{task.taskTime}</p>
+                  </div>
+                  <div className={styles.taskTime}>
+                    <p className={styles.taskCreatedOn}>Complete by:</p>
+                    <p
+                      className={`${styles.taskCreatedOn} ${styles.taskCompleteBy}`}
                     >
-                      complete
-                    </button>
-                    <button
-                      onClick={() => deleteTaskFromArr(task)}
-                      className={`${styles.deleteBtn} ${styles.button}`}
-                    >
-                      remove
-                    </button>
+                      {task.completeBy} !
+                    </p>
                   </div>
                 </div>
-                <div className={styles.time}>
-                  <p>Task created on {task.taskTime}</p>
-                </div>
-                <p>Complete by: {task.completeBy} !</p>
               </div>
             ))}
+          {/* ~~~~~~~~~~~~~~~~~~~ Mapping through COMPLETED task array to display each object ~~~~~~~~~~~~~~~~~~~*/}
           {active === '2' &&
             completedTask.map((completedTask, index) => (
               <div key={index}>
-                <div
-                  className={styles.listItem}
-                  style={{ backgroundColor: [completedTask.color] }}
-                >
-                  <div className={styles.flex}>
-                    <p className={styles.taskIndex}>{index + 1}.</p>
+                <div className={styles.flexwrap}>
+                  <div
+                    className={styles.listItem}
+                    style={{ backgroundColor: [completedTask.color] }}
+                  >
+                    <div className={styles.flex}>
+                      <p className={styles.taskIndex}>{index + 1}.</p>
+                      <div>
+                        <p
+                          className={`${styles.taskContent} ${styles.taskTitle}`}
+                        >
+                          {completedTask.taskTitle}
+                        </p>
+                        <p className={styles.taskContent}>
+                          {completedTask.task}
+                        </p>
+                      </div>
+                    </div>
                     <div>
-                      <p
-                        className={`${styles.taskContent} ${styles.taskTitle}`}
+                      <button
+                        onClick={() => deleteTaskFromArr(completedTask)}
+                        className={`${styles.deleteBtn} ${styles.button}`}
                       >
-                        {completedTask.taskTitle}
-                      </p>
-                      <p className={styles.taskContent}>{completedTask.task}</p>
+                        remove
+                      </button>
                     </div>
                   </div>
-                  <div>
-                    <button
-                      onClick={() => deleteTaskFromArr(completedTask)}
-                      className={`${styles.deleteBtn} ${styles.button}`}
-                    >
-                      remove
-                    </button>
+                  <div className={styles.taskTime}>
+                    <p className={styles.taskCreatedOn}>Task created on</p>
+                    <p className={styles.taskCreatedOn}>
+                      {completedTask.taskTime}
+                    </p>
                   </div>
-                </div>
-                <div className={styles.time}>
-                  <p>Task created on {completedTask.taskTime}</p>
                 </div>
               </div>
             ))}
-          {/* {storedTasks.map((task, index) => (
-            <div className={styles.listItem}>
-              <p>
-                {index + 1}. {task}
-              </p>
-            </div>
-          ))} */}
         </div>
       </main>
     </div>

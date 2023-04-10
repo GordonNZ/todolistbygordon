@@ -105,13 +105,16 @@ main {
   align-items: center;
   justify-content: space-between;
 }
+.flexwrap {
+  display: flex;
+}
 .listItem {
   background-color: #fb486b;
   padding: 0.8em 2em;
-  margin: 0.5em 2em;
+  margin: 0.5em 1em 0.5em 3em;
   border: 1px solid var(--black);
   border-radius: inherit;
-  width: 60%;
+  width: 62%;
   font-weight: 500;
   font-size: 1.2rem;
   display: flex;
@@ -130,9 +133,25 @@ main {
 .taskIndex {
   margin-right: 2em;
 }
-.time {
+.taskCreatedOn {
+  font-size: 1.05rem;
+  margin: 0.15em 0.1em;
+}
+.taskTime {
   border: 1px solid var(--black);
-  border-radius: inherit;
+  border-radius: 12px;
+  background-color: rgba(92, 188, 248, 0.6);
+  margin: 1em 1em;
+  width: 12%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+}
+.taskCompleteBy {
+  font-weight: 500;
+  color: #e33f60;
 }
 button {
   padding: 0.5em 1em;
