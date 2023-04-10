@@ -135,6 +135,13 @@ main {
   border-radius: inherit;
 }
 button {
+  padding: 0.5em 1em;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.02) 0px 2px 4px -1px;
+}
+.button {
   background-color: var(--green);
   padding: 0.5em 2em;
   font-size: 1.2rem;
@@ -148,7 +155,7 @@ button {
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   cursor: pointer;
 }
-button:hover {
+.button:hover {
   background-color: rgb(43, 184, 64);
 }
 
@@ -215,7 +222,7 @@ button:hover {
 .colorTitle {
   margin: 1em 0;
 }
-.colorPicker {
+.centerItem {
   display: flex;
   justify-content: center;
 }

@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import styles from './HomePage.module.css';
 import { TwitterPicker } from 'react-color'; //https://casesandberg.github.io/react-color/#api
+import Calendar from 'react-calendar'; //https://www.npmjs.com/package/react-calendar
+import 'react-calendar/dist/Calendar.css';
 
 export default function HomePage() {
   const [task, setTask] = useState('');
   const [taskTitle, setTaskTitle] = useState('');
   const [tasksArray, setTasksArray] = useState([]);
   const [color, setColor] = useState('');
+  const [completeBy, setCompleteBy] = useState('');
 
   const changeTask = (e) => setTask(e.target.value);
   const changeTaskTitle = (e) => setTaskTitle(e.target.value);
 
   const [currentTime, setCurrentTime] = useState(new Date());
 
+  //update date and set currentTime at 1000 interval
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(new Date());
@@ -25,13 +29,24 @@ export default function HomePage() {
     console.log(color.hex);
   };
 
-  const addTaskToArray = (task, taskTitle, color) => {
+  const completeByFunc = (completeDay) => {
+    // console.log(currentTime);
+    // console.log(completeDay);
+    setCompleteBy(completeDay.toLocaleDateString());
+    if (completeDay.toLocaleDateString() === currentTime.toLocaleDateString()) {
+      setCompleteBy('Today');
+    }
+  };
+
+  // Add task function
+  const addTaskToArray = (task, taskTitle, color, completeBy) => {
     const taskTime = currentTime.toLocaleTimeString();
     const taskInfo = {
       task: task,
       taskTitle: taskTitle,
       color: color,
       taskTime: taskTime,
+      completeBy: completeBy,
     };
     console.log(taskInfo);
     //if task to add is identical to the latest task in array, then alert
@@ -50,8 +65,11 @@ export default function HomePage() {
 
   const submitTask = (e) => {
     e.preventDefault();
+    if (completeBy === '') {
+      setCompleteBy('Unset');
+    }
     if (task.length > 0) {
-      addTaskToArray(task, taskTitle, color);
+      addTaskToArray(task, taskTitle, color, completeBy);
     } else {
       alert('Please input a task');
     }
@@ -122,10 +140,11 @@ export default function HomePage() {
         </h1>
         <nav>
           <ul>
-            <li>
+            {/* <li>
               <button className={styles.startBtn}>Start</button>
-            </li>
-            <li className={styles.date}>Date</li>
+            </li> */}
+            <li className={styles.date}>{currentTime.toLocaleTimeString()}</li>
+            <li className={styles.date}>{currentTime.toLocaleDateString()}</li>
           </ul>
         </nav>
       </header>
@@ -134,10 +153,12 @@ export default function HomePage() {
           <h2>To do list:</h2>
 
           <div className={styles.buttons}>
-            <button className={styles.editBtn}>Edit</button>
+            <button className={`${styles.editBtn} ${styles.button}`}>
+              Edit
+            </button>
           </div>
         </div>
-        {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~  FORM TO ADD TASK ~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
+        {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~  FORM TO ADD TASK ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
         <div className={styles.formContainer}>
           <form className={styles.addForm} onSubmit={submitTask}>
             <div className={styles.toDoContainer}>
@@ -145,7 +166,9 @@ export default function HomePage() {
                 <label className={styles.toDoLabel}>To Do:</label>
                 <p>Add a task you need to complete!</p>
               </div>
-              <button className={styles.addBtn}>Add</button>
+              <button className={`${styles.addBtn} ${styles.button}`}>
+                Add
+              </button>
             </div>
 
             <div>
@@ -164,8 +187,15 @@ export default function HomePage() {
                 className={styles.addTaskInput}
               ></input>
 
+              <p className={styles.colorTitle}>Complete by:</p>
+              <div className={styles.centerItem}>
+                <Calendar
+                  onClickDay={(value, event) => completeByFunc(value)}
+                />
+              </div>
+
               <p className={styles.colorTitle}>Colour:</p>
-              <div className={styles.colorPicker}>
+              <div className={styles.centerItem}>
                 <TwitterPicker
                   colors={[
                     '#fb486b',
@@ -202,7 +232,11 @@ export default function HomePage() {
           <button
             key={1}
             onClick={activeBtn}
-            className={active === '1' ? `${styles.currentBtn}` : undefined}
+            className={
+              active === '1'
+                ? `${styles.currentBtn} ${styles.button}`
+                : `${styles.button}`
+            }
             id={'1'}
           >
             Active Tasks
@@ -211,7 +245,11 @@ export default function HomePage() {
             key={2}
             onClick={activeBtn}
             id={'2'}
-            className={active === '2' ? `${styles.currentBtn}` : undefined}
+            className={
+              active === '2'
+                ? `${styles.currentBtn} ${styles.button}`
+                : `${styles.button}`
+            }
           >
             Completed Tasks
           </button>
@@ -239,14 +277,14 @@ export default function HomePage() {
                   </div>
                   <div>
                     <button
-                      className={`${styles.deleteBtn}`}
+                      className={`${styles.deleteBtn} ${styles.button}`}
                       onClick={() => completeTask(task)}
                     >
                       complete
                     </button>
                     <button
                       onClick={() => deleteTaskFromArr(task)}
-                      className={styles.deleteBtn}
+                      className={`${styles.deleteBtn} ${styles.button}`}
                     >
                       remove
                     </button>
@@ -255,6 +293,7 @@ export default function HomePage() {
                 <div className={styles.time}>
                   <p>Task created on {task.taskTime}</p>
                 </div>
+                <p>Complete by: {task.completeBy} !</p>
               </div>
             ))}
           {active === '2' &&
@@ -278,7 +317,7 @@ export default function HomePage() {
                   <div>
                     <button
                       onClick={() => deleteTaskFromArr(completedTask)}
-                      className={styles.deleteBtn}
+                      className={`${styles.deleteBtn} ${styles.button}`}
                     >
                       remove
                     </button>
