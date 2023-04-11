@@ -11,9 +11,7 @@ export default function Header({ currentTime, currentDate }) {
         </h1>
         <nav>
           <ul>
-            {/* <li>
-        <button className={styles.startBtn}>Start</button>
-      </li> */}
+            <li></li>
             <li className={styles.date}>{currentTime}</li>
             <li className={styles.date}>{currentDate}</li>
           </ul>

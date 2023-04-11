@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../App.css';
 import styles from './HomePage.module.css';
+
 // import { TwitterPicker } from 'react-color'; //https://casesandberg.github.io/react-color/#api
 // import Calendar from 'react-calendar'; //https://www.npmjs.com/package/react-calendar
 import 'react-calendar/dist/Calendar.css';
@@ -12,14 +13,15 @@ import Header from './components/Header';
 export default function HomePage() {
   // const [task, setTask] = useState('');
   // const [taskTitle, setTaskTitle] = useState('');
-  const [tasksArray, setTasksArray] = useState([]);
   // const [color, setColor] = useState('');
   // const [completeBy, setCompleteBy] = useState('');
-
   // const changeTask = (e) => setTask(e.target.value);
   // const changeTaskTitle = (e) => setTaskTitle(e.target.value);
-
+  const [tasksArray, setTasksArray] = useState([]);
   const [currentTime, setCurrentTime] = useState(new Date());
+  //Completed tasks
+  const [completedTask, setCompletedTask] = useState([]);
+  const [show, setShow] = useState(false);
 
   // //update date and set currentTime at 1000 interval
   useEffect(() => {
@@ -93,9 +95,6 @@ export default function HomePage() {
     }
   };
 
-  //Completed tasks
-  const [completedTask, setCompletedTask] = useState([]);
-
   // add task to completed tasks array and remove from tasks array
   const completeTask = (taskToComplete) => {
     setCompletedTask([...completedTask, taskToComplete]);
@@ -153,6 +152,7 @@ export default function HomePage() {
           </ul>
         </nav> */}
       {/* </header> */}
+
       <Header
         currentTime={currentTime.toLocaleTimeString()}
         currentDate={currentTime.toLocaleDateString()}
@@ -162,13 +162,23 @@ export default function HomePage() {
           <h2>To do list:</h2>
 
           <div className={styles.buttons}>
-            <button className={`${styles.editBtn} ${styles.button}`}>
+            {/* <button className={`${styles.editBtn} ${styles.button}`}>
               Edit
+            </button> */}
+            <button
+              className={`${styles.startBtn} ${styles.button}`}
+              onClick={() => setShow(true)}
+            >
+              +
             </button>
           </div>
         </div>
         {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~  FORM TO ADD TASK ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
-        <AddTaskForm addTaskToArray={addTaskToArray} />
+        <AddTaskForm
+          addTaskToArray={addTaskToArray}
+          onClose={() => setShow(false)}
+          show={show}
+        />
         {/* <div className={styles.formContainer}>
           <form className={styles.addForm} onSubmit={submitTask}>
             <div className={styles.toDoContainer}>
