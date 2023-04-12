@@ -1,7 +1,7 @@
 .header {
   height: 95vh;
   text-align: center;
-  background-color: aqua;
+  /* background-color: aqua; */
   animation: fadeInAnimation 3.5s 1 forwards;
 }
 @keyframes fadeInAnimation {
@@ -13,7 +13,7 @@
   }
 }
 .headH1 {
-  font-size: 3.5rem;
+  font-size: clamp(3rem, 1rem + 3vw, 5rem);
   padding: 2em 0 1em 0;
 }
 .headH1::after {

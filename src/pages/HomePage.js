@@ -292,9 +292,9 @@ export default function HomePage() {
                     className={styles.listItem}
                     style={{ backgroundColor: [task.color] }}
                   >
-                    <div className={styles.flex}>
+                    <div className={`${styles.flex} `}>
                       <p className={styles.taskIndex}>{index + 1}.</p>
-                      <div>
+                      <div className={styles.taskContainer}>
                         <p
                           className={`${styles.taskContent} ${styles.taskTitle}`}
                         >

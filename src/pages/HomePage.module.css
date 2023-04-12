@@ -1,6 +1,6 @@
-* {
-  /* border: 2px solid black; */
-}
+/* * {
+  border: 2px solid red !important;
+} */
 body {
   color: var(--black);
 }
@@ -12,12 +12,12 @@ header {
   background-color: rgba(162, 154, 154, 0.4);
   padding: 1em 5em 2em 5em;
   height: 10vh;
-  /* border-bottom: 1px solid rgba(190, 70, 94, 0.174); */
+  width: 100%;
 }
 ul {
   list-style: none;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 nav > ul > li {
   margin: 0 1.2em;
@@ -86,14 +86,16 @@ main {
 .flex {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  max-width: 75%;
 }
 .flexwrap {
   display: flex;
+  flex-wrap: wrap;
 }
 .listItem {
   background-color: #fb486b;
-  padding: 0.8em 2em;
+  padding: 0.8em 1em;
   margin: 0.5em 1em 0.5em 3em;
   border: 2px solid #e7e7e7;
   border-radius: inherit;
@@ -104,9 +106,14 @@ main {
   justify-content: space-between;
   align-items: center;
 }
+.taskContainer {
+  margin-right: 2em;
+  /* width: 10%; */
+}
 .taskContent {
   margin: 0.5em 0;
-  margin-right: 4em;
+  /* margin-right: 4em; */
+  /* width: 50%; */
   font-weight: 400;
 }
 .taskTitle {
@@ -114,7 +121,7 @@ main {
   font-size: 1.25em;
 }
 .taskIndex {
-  margin-right: 2em;
+  margin-right: 1.2em;
 }
 .taskCreatedOn {
   font-size: 1.05rem;
