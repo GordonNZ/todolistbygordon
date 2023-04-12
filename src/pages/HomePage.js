@@ -1,18 +1,30 @@
 import React, { useEffect, useState } from 'react';
+import '../App.css';
 import styles from './HomePage.module.css';
-import { TwitterPicker } from 'react-color'; //https://casesandberg.github.io/react-color/#api
+
+// import { TwitterPicker } from 'react-color'; //https://casesandberg.github.io/react-color/#api
+// import Calendar from 'react-calendar'; //https://www.npmjs.com/package/react-calendar
+import 'react-calendar/dist/Calendar.css';
+
+import './components/AddTaskForm';
+import AddTaskForm from './components/AddTaskForm';
+import Navbar from './components/Navbar';
+import Header from './components/Header';
 
 export default function HomePage() {
-  const [task, setTask] = useState('');
-  const [taskTitle, setTaskTitle] = useState('');
+  // const [task, setTask] = useState('');
+  // const [taskTitle, setTaskTitle] = useState('');
+  // const [color, setColor] = useState('');
+  // const [completeBy, setCompleteBy] = useState('');
+  // const changeTask = (e) => setTask(e.target.value);
+  // const changeTaskTitle = (e) => setTaskTitle(e.target.value);
   const [tasksArray, setTasksArray] = useState([]);
-  const [color, setColor] = useState('');
-
-  const changeTask = (e) => setTask(e.target.value);
-  const changeTaskTitle = (e) => setTaskTitle(e.target.value);
-
   const [currentTime, setCurrentTime] = useState(new Date());
+  //Completed tasks
+  const [completedTask, setCompletedTask] = useState([]);
+  const [show, setShow] = useState(false);
 
+  // //update date and set currentTime at 1000 interval
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(new Date());
@@ -20,18 +32,29 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleChangeComplete = (color) => {
-    setColor(color.hex);
-    console.log(color.hex);
-  };
+  // const handleChangeComplete = (color) => {
+  //   setColor(color.hex);
+  //   console.log(color.hex);
+  // };
 
-  const addTaskToArray = (task, taskTitle, color) => {
-    const taskTime = currentTime.toLocaleTimeString();
+  // const completeByFunc = (completeDay) => {
+  //   // console.log(currentTime);
+  //   // console.log(completeDay);
+  //   setCompleteBy(completeDay.toLocaleDateString());
+  //   if (completeDay.toLocaleDateString() === currentTime.toLocaleDateString()) {
+  //     setCompleteBy('Today');
+  //   }
+  // };
+
+  // Add task function
+  const addTaskToArray = (task, taskTitle, color, completeBy) => {
+    const taskTime = `${currentTime.toDateString()} at ${currentTime.toLocaleTimeString()}`;
     const taskInfo = {
       task: task,
       taskTitle: taskTitle,
       color: color,
       taskTime: taskTime,
+      completeBy: completeBy,
     };
     console.log(taskInfo);
     //if task to add is identical to the latest task in array, then alert
@@ -48,14 +71,17 @@ export default function HomePage() {
     }
   };
 
-  const submitTask = (e) => {
-    e.preventDefault();
-    if (task.length > 0) {
-      addTaskToArray(task, taskTitle, color);
-    } else {
-      alert('Please input a task');
-    }
-  };
+  // const submitTask = (e) => {
+  //   e.preventDefault();
+  //   if (completeBy === '') {
+  //     setCompleteBy('Unset');
+  //   }
+  //   if (task.length > 0) {
+  //     addTaskToArray(task, taskTitle, color, completeBy);
+  //   } else {
+  //     alert('Please input a task');
+  //   }
+  // };
   // a function called deleteTaskFromArr that takes one parameter called taskToDelete.
   const deleteTaskFromArr = (taskToDelete) => {
     //filter method is called on tasksArray, which creates a new array containing only the elements that pass a certain test. In this case, the test is whether the element is not equal to taskToDelete,then setting the tasksArray state to this new array.
@@ -69,9 +95,6 @@ export default function HomePage() {
       localStorage.setItem('completedTasks', JSON.stringify([]));
     }
   };
-
-  //Completed tasks
-  const [completedTask, setCompletedTask] = useState([]);
 
   // add task to completed tasks array and remove from tasks array
   const completeTask = (taskToComplete) => {
@@ -113,39 +136,79 @@ export default function HomePage() {
     setActive(e.target.id);
   };
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.pageYOffset > 100) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div>
-      <header>
+      {/* <header>
         <h1 className={styles.name}>
-          To Do Today
-          {/* <span id={styles.gm}>gm</span> */}
-        </h1>
+          To Do Today */}
+      {/* <span id={styles.gm}>gm</span> */}
+      {/* </h1>
         <nav>
           <ul>
-            <li>
+            {/* <li>
               <button className={styles.startBtn}>Start</button>
-            </li>
-            <li className={styles.date}>Date</li>
+            </li> */}
+      {/* <li className={styles.date}>{currentTime.toLocaleTimeString()}</li>
+            <li className={styles.date}>{currentTime.toLocaleDateString()}</li>
           </ul>
-        </nav>
-      </header>
+        </nav> */}
+      {/* </header> */}
+
+      <Navbar
+        currentTime={currentTime.toLocaleTimeString()}
+        currentDate={currentTime.toLocaleDateString()}
+      />
+      <Header />
       <main>
         <div className={styles.container}>
           <h2>To do list:</h2>
 
-          <div className={styles.buttons}>
-            <button className={styles.editBtn}>Edit</button>
-          </div>
+          {/* <button className={`${styles.editBtn} ${styles.button}`}>
+              Edit
+            </button> */}
+          <button
+            className={
+              scrolled
+                ? `${styles.plusBtn} ${styles.button} ${styles.scrolled}`
+                : `${styles.plusBtn} ${styles.button}`
+            }
+            onClick={() => setShow(true)}
+          >
+            +
+          </button>
         </div>
-        {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~  FORM TO ADD TASK ~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
-        <div className={styles.formContainer}>
+        {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~  FORM TO ADD TASK ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
+        <AddTaskForm
+          addTaskToArray={addTaskToArray}
+          onClose={() => setShow(false)}
+          show={show}
+        />
+        {/* <div className={styles.formContainer}>
           <form className={styles.addForm} onSubmit={submitTask}>
             <div className={styles.toDoContainer}>
               <div className={styles.toDoHeading}>
                 <label className={styles.toDoLabel}>To Do:</label>
                 <p>Add a task you need to complete!</p>
               </div>
-              <button className={styles.addBtn}>Add</button>
+              <button className={`${styles.addBtn} ${styles.button}`}>
+                Add
+              </button>
             </div>
 
             <div>
@@ -164,8 +227,15 @@ export default function HomePage() {
                 className={styles.addTaskInput}
               ></input>
 
+              <p className={styles.colorTitle}>Complete by:</p>
+              <div className={styles.centerItem}>
+                <Calendar
+                  onClickDay={(value, event) => completeByFunc(value)}
+                />
+              </div>
+
               <p className={styles.colorTitle}>Colour:</p>
-              <div className={styles.colorPicker}>
+              <div className={styles.centerItem}>
                 <TwitterPicker
                   colors={[
                     '#fb486b',
@@ -181,28 +251,19 @@ export default function HomePage() {
                   onChangeComplete={handleChangeComplete}
                 />
               </div>
-
-              {/* <div
-                className={`${styles.colorBox} ${styles[active]}`}
-                onClick={handleClick}
-              ></div>
-              <div
-                className={`${styles.colorBox2} ${styles[active]}`}
-                onClick={handleClick}
-              ></div>
-              <div
-                className={`${styles.colorBox3} ${styles[active]}`}
-                onClick={handleClick}
-              ></div> */}
             </div>
           </form>
-        </div>
-
+        </div> */}
+        {/* ~~~~~~~~~~~~~~~~~~~ ACTIVE / COMPLETED BUTTONS  ~~~~~~~~~~~~~~~~~~~*/}
         <div>
           <button
             key={1}
             onClick={activeBtn}
-            className={active === '1' ? `${styles.currentBtn}` : undefined}
+            className={
+              active === '1'
+                ? `${styles.currentBtn} ${styles.button}`
+                : `${styles.button}`
+            }
             id={'1'}
           >
             Active Tasks
@@ -211,7 +272,11 @@ export default function HomePage() {
             key={2}
             onClick={activeBtn}
             id={'2'}
-            className={active === '2' ? `${styles.currentBtn}` : undefined}
+            className={
+              active === '2'
+                ? `${styles.currentBtn} ${styles.button}`
+                : `${styles.button}`
+            }
           >
             Completed Tasks
           </button>
@@ -222,72 +287,92 @@ export default function HomePage() {
           {active === '1' &&
             tasksArray.map((task, index) => (
               <div key={index}>
-                <div
-                  className={styles.listItem}
-                  style={{ backgroundColor: [task.color] }}
-                >
-                  <div className={styles.flex}>
-                    <p className={styles.taskIndex}>{index + 1}.</p>
+                <div className={styles.flexwrap}>
+                  <div
+                    className={styles.listItem}
+                    style={{ backgroundColor: [task.color] }}
+                  >
+                    <div className={styles.flex}>
+                      <p className={styles.taskIndex}>{index + 1}.</p>
+                      <div>
+                        <p
+                          className={`${styles.taskContent} ${styles.taskTitle}`}
+                        >
+                          {task.taskTitle}
+                        </p>
+                        <p className={styles.taskContent}>{task.task}</p>
+                      </div>
+                    </div>
                     <div>
-                      <p
-                        className={`${styles.taskContent} ${styles.taskTitle}`}
+                      <button
+                        className={`${styles.deleteBtn} ${styles.button}`}
+                        onClick={() => completeTask(task)}
                       >
-                        {task.taskTitle}
-                      </p>
-                      <p className={styles.taskContent}>{task.task}</p>
+                        complete
+                      </button>
+                      <button
+                        onClick={() => deleteTaskFromArr(task)}
+                        className={`${styles.deleteBtn} ${styles.button}`}
+                      >
+                        remove
+                      </button>
                     </div>
                   </div>
-                  <div>
-                    <button
-                      className={`${styles.deleteBtn}`}
-                      onClick={() => completeTask(task)}
-                    >
-                      complete
-                    </button>
-                    <button
-                      onClick={() => deleteTaskFromArr(task)}
-                      className={styles.deleteBtn}
-                    >
-                      remove
-                    </button>
+                  <div className={styles.taskTime}>
+                    <p className={styles.taskCreatedOn}>Task created on</p>
+                    <p className={styles.taskCreatedOn}>{task.taskTime}</p>
                   </div>
-                </div>
-                <div className={styles.time}>
-                  <p>Task created on {task.taskTime}</p>
+                  <div className={styles.taskTime}>
+                    <p className={styles.taskCreatedOn}>Complete by:</p>
+                    <p
+                      className={`${styles.taskCreatedOn} ${styles.taskCompleteBy}`}
+                    >
+                      {task.completeBy} !
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
+          {/* ~~~~~~~~~~~~~~~~~~~ Mapping through COMPLETED task array to display each object ~~~~~~~~~~~~~~~~~~~*/}
           {active === '2' &&
             completedTask.map((completedTask, index) => (
-              <div
-                key={index}
-                className={styles.listItem}
-                style={{ backgroundColor: [completedTask.color] }}
-              >
-                <div className={styles.flex}>
-                  <p className={styles.taskIndex}>{index + 1}.</p>
-                  <div>
-                    <p className={`${styles.taskContent} ${styles.taskTitle}`}>
-                      {completedTask.taskTitle}
-                    </p>
-                    <p className={styles.taskContent}>{completedTask.task}</p>
+              <div key={index}>
+                <div className={styles.flexwrap}>
+                  <div
+                    className={styles.listItem}
+                    style={{ backgroundColor: [completedTask.color] }}
+                  >
+                    <div className={styles.flex}>
+                      <p className={styles.taskIndex}>{index + 1}.</p>
+                      <div>
+                        <p
+                          className={`${styles.taskContent} ${styles.taskTitle}`}
+                        >
+                          {completedTask.taskTitle}
+                        </p>
+                        <p className={styles.taskContent}>
+                          {completedTask.task}
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <button
+                        onClick={() => deleteTaskFromArr(completedTask)}
+                        className={`${styles.deleteBtn} ${styles.button}`}
+                      >
+                        remove
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <button
-                    onClick={() => deleteTaskFromArr(completedTask)}
-                    className={styles.deleteBtn}
-                  ></button>
+                  <div className={styles.taskTime}>
+                    <p className={styles.taskCreatedOn}>Task created on</p>
+                    <p className={styles.taskCreatedOn}>
+                      {completedTask.taskTime}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
-          {/* {storedTasks.map((task, index) => (
-            <div className={styles.listItem}>
-              <p>
-                {index + 1}. {task}
-              </p>
-            </div>
-          ))} */}
         </div>
       </main>
     </div>
