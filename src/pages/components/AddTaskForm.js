@@ -6,6 +6,7 @@ import 'react-calendar/dist/Calendar.css';
 import '../Modal.css';
 import { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import { faScaleBalanced } from '@fortawesome/free-solid-svg-icons';
 //Modal: https://medium.com/tinyso/how-to-create-a-modal-component-in-react-from-basic-to-advanced-a3357a2a716a
 
 export default function AddTaskForm({ addTaskToArray, show, onClose }) {
@@ -58,23 +59,30 @@ export default function AddTaskForm({ addTaskToArray, show, onClose }) {
         <div className={styles.formContainer}>
           <form
             className={styles.addForm}
-            onSubmit={submitTask}
             onClick={(e) => e.stopPropagation()}
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
           >
             <div className={styles.toDoContainer}>
               <div className={styles.toDoHeading}>
                 <label className={styles.toDoLabel}>To Do:</label>
                 <p>Add a task you need to complete!</p>
               </div>
-              <button className={`${styles.addBtn} ${styles.button}`}>
-                Add
-              </button>
-              <button
-                className={`${styles.addBtn} ${styles.button}`}
-                onClick={onClose}
-              >
-                Close
-              </button>
+              <div>
+                <button
+                  className={`${styles.addBtn} ${styles.button}`}
+                  onClick={submitTask}
+                >
+                  Add
+                </button>
+                <button
+                  className={`${styles.exitBtn} ${styles.button}`}
+                  onClick={onClose}
+                >
+                  x
+                </button>
+              </div>
             </div>
 
             <div>
@@ -97,6 +105,7 @@ export default function AddTaskForm({ addTaskToArray, show, onClose }) {
               <div className={styles.centerItem}>
                 <Calendar
                   onClickDay={(value, event) => completeByFunc(value)}
+                  className={styles.calendar}
                 />
               </div>
 

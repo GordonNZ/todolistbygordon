@@ -11,6 +11,7 @@ header {
   /* margin: 0 5em 5em 5em; */
   background-color: rgba(162, 154, 154, 0.4);
   padding: 1em 5em 2em 5em;
+  height: 10vh;
   /* border-bottom: 1px solid rgba(190, 70, 94, 0.174); */
 }
 ul {
@@ -29,7 +30,7 @@ nav > ul > li {
   font-weight: 500;
   bottom: 20px;
   display: inline-block;
-  animation: animategm 2s ease-out infinite alternate-reverse;
+  animation: animategm 3s linear infinite;
   position: relative;
 }
 
@@ -43,12 +44,14 @@ nav > ul > li {
 } */
 
 @keyframes animategm {
-  0% {
+  from {
     transform: rotate(0deg);
+    font-size: 15px;
+    color: #e3183d;
   }
-  100% {
+  to {
     transform: rotate(360deg);
-    font-size: 20px;
+    font-size: 15px;
     color: #e3183d;
   }
 }
@@ -70,10 +73,10 @@ main {
 
 .content {
   justify-content: space-evenly;
-  background-color: rgba(210, 196, 180, 0.55);
+  background-color: rgba(162, 154, 154, 0.4);
   border-radius: 3px;
   padding: 2em 0;
-  border: 1px solid var(--black);
+  border: 1px solid #e7e7e7;
 }
 .listContainer {
   display: flex;
@@ -92,7 +95,7 @@ main {
   background-color: #fb486b;
   padding: 0.8em 2em;
   margin: 0.5em 1em 0.5em 3em;
-  border: 1px solid var(--black);
+  border: 2px solid #e7e7e7;
   border-radius: inherit;
   width: 62%;
   font-weight: 500;
@@ -118,7 +121,7 @@ main {
   margin: 0.15em 0.1em;
 }
 .taskTime {
-  border: 1px solid var(--black);
+  border: 2px solid #e7e7e7;
   border-radius: 12px;
   background-color: rgba(92, 188, 248, 0.6);
   margin: 1em 1em;
@@ -131,7 +134,7 @@ main {
 }
 .taskCompleteBy {
   font-weight: 500;
-  color: #e33f60;
+  color: #f34366;
 }
 button {
   padding: 0.5em 1em;
@@ -162,8 +165,29 @@ button {
   font-size: 1em;
 }
 /* ADD BUTTON */
+.plusBtn {
+  padding: 0.3em 0.7em;
+  font-size: 2rem;
+  position: fixed;
+  top: 3em;
+  right: 2em;
+  z-index: 1;
+  transition: top 0.2s linear;
+  margin: 1em 0;
+}
+.scrolled {
+  top: 1em;
+  margin: 0.5em 0;
+}
 .addBtn {
   padding: 0.4em 1.6em;
+}
+.exitBtn {
+  padding: 0.4em 1.2em;
+  background-color: #fb486b;
+}
+.exitBtn:hover {
+  background-color: rgb(203, 61, 89);
 }
 /* DELETE BUTTON */
 .deleteBtn {
@@ -183,22 +207,23 @@ button {
   display: flex;
   justify-content: center;
   margin: 0.5em 0;
-  max-height: 97vh;
+  /* max-height: 98vh; */
 }
 .addForm {
   background-color: rgb(112, 222, 163);
-  padding: 2em 2em;
+  padding: 1em 2em;
   text-align: center;
   border-radius: 3px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   width: 50%;
+  max-height: 98vh;
 }
 .toDoContainer {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1.5em;
+  margin: 0.5em 0 0.5em 0;
 }
 .toDoHeading {
   text-align: left;
@@ -221,7 +246,7 @@ button {
   text-align: left;
 }
 .colorTitle {
-  margin: 1em 0;
+  margin: 0.5em 0 0 0;
 }
 .centerItem {
   display: flex;
@@ -239,5 +264,6 @@ button {
   background-color: #e3183d;
 }
 
-.completedBtn {
+.calendar {
+  transform: scale(100%);
 }

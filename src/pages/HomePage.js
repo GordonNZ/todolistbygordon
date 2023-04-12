@@ -8,6 +8,7 @@ import 'react-calendar/dist/Calendar.css';
 
 import './components/AddTaskForm';
 import AddTaskForm from './components/AddTaskForm';
+import Navbar from './components/Navbar';
 import Header from './components/Header';
 
 export default function HomePage() {
@@ -135,6 +136,22 @@ export default function HomePage() {
     setActive(e.target.id);
   };
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.pageYOffset > 100) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div>
       {/* <header>
@@ -153,25 +170,28 @@ export default function HomePage() {
         </nav> */}
       {/* </header> */}
 
-      <Header
+      <Navbar
         currentTime={currentTime.toLocaleTimeString()}
         currentDate={currentTime.toLocaleDateString()}
       />
+      <Header />
       <main>
         <div className={styles.container}>
           <h2>To do list:</h2>
 
-          <div className={styles.buttons}>
-            {/* <button className={`${styles.editBtn} ${styles.button}`}>
+          {/* <button className={`${styles.editBtn} ${styles.button}`}>
               Edit
             </button> */}
-            <button
-              className={`${styles.startBtn} ${styles.button}`}
-              onClick={() => setShow(true)}
-            >
-              +
-            </button>
-          </div>
+          <button
+            className={
+              scrolled
+                ? `${styles.plusBtn} ${styles.button} ${styles.scrolled}`
+                : `${styles.plusBtn} ${styles.button}`
+            }
+            onClick={() => setShow(true)}
+          >
+            +
+          </button>
         </div>
         {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~  FORM TO ADD TASK ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
         <AddTaskForm

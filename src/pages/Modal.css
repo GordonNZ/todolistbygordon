@@ -8,6 +8,8 @@
   opacity: 0;
   transition: all 0.3s ease-in-out;
   pointer-events: none;
+  backdrop-filter: blur(3px);
+  z-index: 2;
 }
 
 .modal.enter-done {
