@@ -13,7 +13,7 @@
   }
 }
 .headH1 {
-  font-size: clamp(3rem, 1rem + 3vw, 5rem);
+  font-size: clamp(2.5rem, 1rem + 3vw, 5rem);
   padding: 2em 0 1em 0;
 }
 .headH1::after {
@@ -31,4 +31,9 @@
 .pBottom {
   position: relative;
   top: 20em;
+}
+@media (max-width: 670px) {
+  .headP {
+    margin: 0 2rem;
+  }
 }
