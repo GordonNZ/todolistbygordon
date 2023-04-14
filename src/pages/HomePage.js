@@ -303,7 +303,7 @@ export default function HomePage() {
                         <p className={styles.taskContent}>{task.task}</p>
                       </div>
                     </div>
-                    <div>
+                    <div className={styles.taskButtons}>
                       <button
                         className={`${styles.deleteBtn} ${styles.button}`}
                         onClick={() => completeTask(task)}
@@ -318,6 +318,9 @@ export default function HomePage() {
                       </button>
                     </div>
                   </div>
+                  {/* <div
+                    className={`${styles.taskInfoContainer} ${styles.flexwrap}`}
+                  > */}
                   <div className={styles.taskTime}>
                     <p className={styles.taskCreatedOn}>Task created on</p>
                     <p className={styles.taskCreatedOn}>{task.taskTime}</p>
@@ -331,6 +334,7 @@ export default function HomePage() {
                     </p>
                   </div>
                 </div>
+                {/* </div> */}
               </div>
             ))}
           {/* ~~~~~~~~~~~~~~~~~~~ Mapping through COMPLETED task array to display each object ~~~~~~~~~~~~~~~~~~~*/}
