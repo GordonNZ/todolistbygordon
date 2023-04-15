@@ -1,0 +1,42 @@
+.footer {
+  background-color: #aaaaaa;
+  min-height: 7vh;
+  padding: 3vh 2vw;
+  text-align: center;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  display: grid;
+
+  /* creating the area template grid */
+  grid-template-areas:
+    'top top top'
+    '. main side'
+    'bottom bottom bottom';
+  grid-template-columns: 1fr 2fr 1fr;
+}
+.spacer {
+  aspect-ratio: 960/42;
+  width: 100%;
+  background-repeat: none;
+  background-position: center;
+  background-size: cover;
+}
+.layer {
+  background-image: url(../../assets/layered-waves-haikei.svg);
+}
+.footerMain {
+  grid-area: main;
+}
+.linkedin {
+  text-decoration: none;
+  color: #e5395b;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all linear 0.15s;
+  grid-area: side;
+}
+.linkedin:hover {
+  text-decoration: underline;
+  color: #9c011e;
+}

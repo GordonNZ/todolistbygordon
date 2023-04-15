@@ -6,7 +6,7 @@ import 'react-calendar/dist/Calendar.css';
 import '../Modal.css';
 import { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import { faScaleBalanced } from '@fortawesome/free-solid-svg-icons';
+// import { faScaleBalanced } from '@fortawesome/free-solid-svg-icons';
 //Modal: https://medium.com/tinyso/how-to-create-a-modal-component-in-react-from-basic-to-advanced-a3357a2a716a
 
 export default function AddTaskForm({ addTaskToArray, show, onClose }) {

@@ -1,7 +1,7 @@
 .header {
   height: 95vh;
   text-align: center;
-  background-color: aqua;
+  /* background-color: aqua; */
   animation: fadeInAnimation 3.5s 1 forwards;
 }
 @keyframes fadeInAnimation {
@@ -13,12 +13,12 @@
   }
 }
 .headH1 {
-  font-size: 3.5rem;
-  padding: 2em 0 1em 0;
+  font-size: clamp(1.9rem, 1rem + 3vw, 5rem);
+  padding: 2em 0.5em 1em 0.5em;
 }
 .headH1::after {
   content: ':)';
-  font-size: 2rem;
+  font-size: clamp(1rem, 1rem + 3vw, 2rem);
   font-weight: 500;
   bottom: 50px;
   left: 10px;
@@ -31,4 +31,9 @@
 .pBottom {
   position: relative;
   top: 20em;
+}
+@media (max-width: 670px) {
+  .headP {
+    margin: 0 2rem;
+  }
 }

@@ -1,10 +1,11 @@
-* {
-  /* border: 2px solid black; */
-}
+/* * {
+  border: 2px solid red !important;
+} */
+
 body {
   color: var(--black);
 }
-/* ~~~~~~~~ Header code ~~~~~~~~ */
+/* ~~~~~~~~ Header ~~~~~~~~ */
 header {
   display: flex;
   justify-content: space-between;
@@ -12,18 +13,17 @@ header {
   background-color: rgba(162, 154, 154, 0.4);
   padding: 1em 5em 2em 5em;
   height: 10vh;
-  /* border-bottom: 1px solid rgba(190, 70, 94, 0.174); */
+  width: 100%;
 }
 ul {
   list-style: none;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 nav > ul > li {
   margin: 0 1.2em;
   font-size: 1rem;
 }
-
 .name::after {
   content: 'gm';
   font-size: 0.7rem;
@@ -33,16 +33,6 @@ nav > ul > li {
   animation: animategm 3s linear infinite;
   position: relative;
 }
-
-/* #gm {
-  font-size: 0.7rem;
-  font-weight: 500;
-
-  bottom: 20px;
-  animation: animategm 4s infinite alternate-reverse;
-  position: relative;
-} */
-
 @keyframes animategm {
   from {
     transform: rotate(0deg);
@@ -55,13 +45,11 @@ nav > ul > li {
     color: #e3183d;
   }
 }
-
 .date {
   margin-top: 0.7em;
 }
 
-/* ~~~~~~~~ Main Body code ~~~~~~~~ */
-
+/* ~~~~~~~~ Main Body ~~~~~~~~ */
 main {
   margin: 1em 5em;
 }
@@ -70,7 +58,6 @@ main {
   justify-content: space-between;
   margin: 2em 0;
 }
-
 .content {
   justify-content: space-evenly;
   background-color: rgba(162, 154, 154, 0.4);
@@ -86,38 +73,46 @@ main {
 .flex {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  max-width: 75%;
 }
 .flexwrap {
   display: flex;
+  flex-wrap: wrap;
 }
 .listItem {
   background-color: #fb486b;
-  padding: 0.8em 2em;
+  padding: 0.8em 1em;
   margin: 0.5em 1em 0.5em 3em;
   border: 2px solid #e7e7e7;
   border-radius: inherit;
   width: 62%;
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: clamp(1.05rem, 1vw, 1.2rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+.taskContainer {
+  margin-right: 2em;
+  /* width: 10%; */
+}
 .taskContent {
   margin: 0.5em 0;
-  margin-right: 4em;
+  /* margin-right: 4em; */
+  /* width: 50%; */
   font-weight: 400;
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
 }
 .taskTitle {
   font-weight: 500;
-  font-size: 1.25em;
+  font-size: clamp(1.1rem, 1.2rem + 2.5vw, 1.3rem);
 }
 .taskIndex {
-  margin-right: 2em;
+  margin-right: 1.2em;
 }
 .taskCreatedOn {
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   margin: 0.15em 0.1em;
 }
 .taskTime {
@@ -131,6 +126,7 @@ main {
   justify-content: center;
   flex-direction: column;
   padding: 10px;
+  text-align: center;
 }
 .taskCompleteBy {
   font-weight: 500;
@@ -146,7 +142,7 @@ button {
 .button {
   background-color: var(--green);
   padding: 0.5em 2em;
-  font-size: 1.2rem;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
   border-style: none;
   border-radius: 12px;
   color: var(--black);
@@ -160,7 +156,6 @@ button {
 .button:hover {
   background-color: rgb(43, 184, 64);
 }
-
 .buttons > button {
   font-size: 1em;
 }
@@ -202,7 +197,7 @@ button {
   color: white;
 }
 
-/* FORM CSS */
+/* ~~~~~~~~~~~~~~~~~~ FORM CSS ~~~~~~~~~~~~~~~~~~*/
 .formContainer {
   display: flex;
   justify-content: center;
@@ -229,24 +224,25 @@ button {
   text-align: left;
 }
 .toDoLabel {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
 }
 .addTaskInput {
   padding: 0.5em 0.5em;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
   border: none;
   width: 90%;
   border-radius: inherit;
   align-self: center;
 }
 .addTaskTitle {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2vw, 1.3rem);
   font-weight: 400;
   margin: 0.7em 0 0.3em 5%;
   text-align: left;
 }
 .colorTitle {
-  margin: 0.5em 0 0 0;
+  margin: 0.4em 0 0.3em 0;
+  font-size: clamp(0.85rem, 2vw, 1rem);
 }
 .centerItem {
   display: flex;
@@ -264,6 +260,81 @@ button {
   background-color: #e3183d;
 }
 
-.calendar {
-  transform: scale(100%);
+@media (max-width: 670px) {
+  header {
+    padding: 1em 1em 2em 1em;
+  }
+  .name::after {
+    content: 'gm';
+    font-size: 0.8rem !important;
+  }
+  .name {
+    font-size: 1.6rem;
+  }
+  nav > ul > li {
+    margin: 0 0.5em;
+    font-size: 0.85rem;
+  }
+  .plusBtn {
+    padding: 0.15em 0.55em;
+    font-size: 2rem;
+    top: 1.5em;
+    right: 0.5em;
+    /* margin: 1em 0; */
+  }
+  main {
+    margin: 1em 1em;
+  }
+
+  .deleteBtn {
+    font-size: 0.85rem;
+    padding: 0.6em 0.5em;
+    margin: 0.1em 0.2em;
+  }
+
+  .taskContent {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  .addForm {
+    width: 75%;
+  }
+}
+@media (max-width: 1100px) {
+  .listItem {
+    margin: 0.5em 1em 0.5em 1em;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .flex {
+    max-width: 100%;
+  }
+  .taskButtons {
+    display: flex;
+    margin: 0.4em auto;
+  }
+  .taskTime {
+    margin: 0.2em 0 1em 0;
+    padding: 6px;
+    width: 35%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media (max-width: 1300px) {
+  .addForm {
+    padding: 1em 1em;
+    /* height: 95vh; */
+  }
+  .addTaskTitle {
+    font-size: 1.15rem;
+    font-weight: 400;
+    margin: 0.7em 0 0.3em 5%;
+    text-align: left;
+  }
+  .calendar button {
+    padding: 0.4em 0.6em;
+    font-size: 0.75rem;
+    box-shadow: none;
+  }
 }

@@ -19,3 +19,8 @@
 .modal.exit {
   opacity: 0;
 }
+@media (max-width: 1300px) {
+  .react-calendar__navigation {
+    margin-bottom: 0 !important;
+  }
+}
