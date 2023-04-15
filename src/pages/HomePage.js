@@ -10,6 +10,7 @@ import './components/AddTaskForm';
 import AddTaskForm from './components/AddTaskForm';
 import Navbar from './components/Navbar';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 export default function HomePage() {
   // const [task, setTask] = useState('');
@@ -379,6 +380,7 @@ export default function HomePage() {
             ))}
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

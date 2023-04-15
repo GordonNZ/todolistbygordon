@@ -1,10 +1,11 @@
 /* * {
   border: 2px solid red !important;
 } */
+
 body {
   color: var(--black);
 }
-/* ~~~~~~~~ Header code ~~~~~~~~ */
+/* ~~~~~~~~ Header ~~~~~~~~ */
 header {
   display: flex;
   justify-content: space-between;
@@ -23,7 +24,6 @@ nav > ul > li {
   margin: 0 1.2em;
   font-size: 1rem;
 }
-
 .name::after {
   content: 'gm';
   font-size: 0.7rem;
@@ -33,16 +33,6 @@ nav > ul > li {
   animation: animategm 3s linear infinite;
   position: relative;
 }
-
-/* #gm {
-  font-size: 0.7rem;
-  font-weight: 500;
-
-  bottom: 20px;
-  animation: animategm 4s infinite alternate-reverse;
-  position: relative;
-} */
-
 @keyframes animategm {
   from {
     transform: rotate(0deg);
@@ -55,13 +45,11 @@ nav > ul > li {
     color: #e3183d;
   }
 }
-
 .date {
   margin-top: 0.7em;
 }
 
-/* ~~~~~~~~ Main Body code ~~~~~~~~ */
-
+/* ~~~~~~~~ Main Body ~~~~~~~~ */
 main {
   margin: 1em 5em;
 }
@@ -70,7 +58,6 @@ main {
   justify-content: space-between;
   margin: 2em 0;
 }
-
 .content {
   justify-content: space-evenly;
   background-color: rgba(162, 154, 154, 0.4);
@@ -169,7 +156,6 @@ button {
 .button:hover {
   background-color: rgb(43, 184, 64);
 }
-
 .buttons > button {
   font-size: 1em;
 }
@@ -211,7 +197,7 @@ button {
   color: white;
 }
 
-/* FORM CSS */
+/* ~~~~~~~~~~~~~~~~~~ FORM CSS ~~~~~~~~~~~~~~~~~~*/
 .formContainer {
   display: flex;
   justify-content: center;
@@ -242,7 +228,7 @@ button {
 }
 .addTaskInput {
   padding: 0.5em 0.5em;
-  font-size: clamp(0.9rem, 3vw, 1.2rem);
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
   border: none;
   width: 90%;
   border-radius: inherit;
@@ -274,12 +260,6 @@ button {
   background-color: #e3183d;
 }
 
-.calendar {
-  transform: scale(100%);
-}
-
-@media (max-width: 470px) {
-}
 @media (max-width: 670px) {
   header {
     padding: 1em 1em 2em 1em;
@@ -305,6 +285,22 @@ button {
   main {
     margin: 1em 1em;
   }
+
+  .deleteBtn {
+    font-size: 0.85rem;
+    padding: 0.6em 0.5em;
+    margin: 0.1em 0.2em;
+  }
+
+  .taskContent {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  .addForm {
+    width: 75%;
+  }
+}
+@media (max-width: 1100px) {
   .listItem {
     margin: 0.5em 1em 0.5em 1em;
     width: 100%;
@@ -313,32 +309,25 @@ button {
   .flex {
     max-width: 100%;
   }
-  .deleteBtn {
-    font-size: 0.85rem;
-    padding: 0.6em 0.5em;
-    margin: 0.1em 0.2em;
-  }
   .taskButtons {
     display: flex;
     margin: 0.4em auto;
   }
   .taskTime {
-    margin: 0.3em 0 1em 0;
+    margin: 0.2em 0 1em 0;
     padding: 6px;
     width: 35%;
     margin-left: auto;
     margin-right: auto;
   }
-  .taskContent {
-    overflow-wrap: break-word;
-    hyphens: auto;
-  }
+}
+@media (max-width: 1300px) {
   .addForm {
     padding: 1em 1em;
-    width: 75%;
+    /* height: 95vh; */
   }
   .addTaskTitle {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 400;
     margin: 0.7em 0 0.3em 5%;
     text-align: left;
