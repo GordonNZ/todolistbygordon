@@ -28,13 +28,15 @@
 .footerMain {
   grid-area: main;
 }
+.footerLinks {
+  grid-area: side;
+}
 .linkedin {
   text-decoration: none;
   color: #e5395b;
-  font-weight: 600;
-  font-size: 1.1rem;
+  font-weight: 500;
+  font-size: 1.05rem;
   transition: all linear 0.15s;
-  grid-area: side;
 }
 .linkedin:hover {
   text-decoration: underline;

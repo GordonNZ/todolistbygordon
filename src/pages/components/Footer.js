@@ -20,9 +20,15 @@ export default function Footer() {
             </a>
           </p>
         </div>
-        <a href='https://linkedin.com' target='blank' className='linkedin'>
-          Linkedin
-        </a>
+        <div className='footerLinks'>
+          <a
+            href='https://www.linkedin.com/in/gordonzam/'
+            target='blank'
+            className='linkedin'
+          >
+            Linkedin
+          </a>
+        </div>
       </footer>
     </div>
   );
