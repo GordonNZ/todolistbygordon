@@ -5,12 +5,12 @@
 body {
   color: var(--black);
 }
-/* ~~~~~~~~ Header ~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Header ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 header {
   display: flex;
   justify-content: space-between;
   /* margin: 0 5em 5em 5em; */
-  background-color: rgba(162, 154, 154, 0.4);
+  background-color: var(--backgroundGrey);
   padding: 1em 5em 2em 5em;
   height: 10vh;
   width: 100%;
@@ -32,24 +32,22 @@ nav > ul > li {
   display: inline-block;
   animation: animategm 3s linear infinite;
   position: relative;
+  color: #e3183d;
+  font-size: 0.95rem;
 }
 @keyframes animategm {
   from {
     transform: rotate(0deg);
-    font-size: 15px;
-    color: #e3183d;
   }
   to {
     transform: rotate(360deg);
-    font-size: 15px;
-    color: #e3183d;
   }
 }
 .date {
   margin-top: 0.7em;
 }
 
-/* ~~~~~~~~ Main Body ~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Main Body ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 main {
   margin: 1em 5em;
 }
@@ -60,10 +58,10 @@ main {
 }
 .content {
   justify-content: space-evenly;
-  background-color: rgba(162, 154, 154, 0.4);
+  background-color: var(--backgroundGrey);
   border-radius: 3px;
   padding: 2em 0;
-  border: 1px solid #e7e7e7;
+  border: 1px solid var(--borderWhite);
 }
 .listContainer {
   display: flex;
@@ -81,10 +79,10 @@ main {
   flex-wrap: wrap;
 }
 .listItem {
-  background-color: #fb486b;
+  background-color: var(--primaryButtonRed);
   padding: 0.8em 1em;
   margin: 0.5em 1em 0.5em 3em;
-  border: 2px solid #e7e7e7;
+  border: 2px solid var(--borderWhite);
   border-radius: inherit;
   width: 62%;
   font-weight: 500;
@@ -95,12 +93,9 @@ main {
 }
 .taskContainer {
   margin-right: 2em;
-  /* width: 10%; */
 }
 .taskContent {
   margin: 0.5em 0;
-  /* margin-right: 4em; */
-  /* width: 50%; */
   font-weight: 400;
   font-size: clamp(0.95rem, 2.5vw, 1.2rem);
 }
@@ -116,7 +111,7 @@ main {
   margin: 0.15em 0.1em;
 }
 .taskTime {
-  border: 2px solid #e7e7e7;
+  border: 2px solid var(--borderWhite);
   border-radius: 12px;
   background-color: rgba(92, 188, 248, 0.6);
   margin: 1em 1em;
@@ -130,7 +125,7 @@ main {
 }
 .taskCompleteBy {
   font-weight: 500;
-  color: #f34366;
+  color: #e73156;
 }
 button {
   padding: 0.5em 1em;
@@ -140,7 +135,7 @@ button {
     rgba(0, 0, 0, 0.02) 0px 2px 4px -1px;
 }
 .button {
-  background-color: var(--green);
+  background-color: var(--primaryGreen);
   padding: 0.5em 2em;
   font-size: clamp(0.9rem, 2vw, 1.2rem);
   border-style: none;
@@ -179,7 +174,7 @@ button {
 }
 .exitBtn {
   padding: 0.4em 1.2em;
-  background-color: #fb486b;
+  background-color: var(--primaryButtonRed);
 }
 .exitBtn:hover {
   background-color: rgb(203, 61, 89);
@@ -197,7 +192,7 @@ button {
   color: white;
 }
 
-/* ~~~~~~~~~~~~~~~~~~ FORM CSS ~~~~~~~~~~~~~~~~~~*/
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FORM CSS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .formContainer {
   display: flex;
   justify-content: center;
@@ -252,14 +247,14 @@ button {
 .currentBtn {
   text-decoration: underline;
   border-radius: 12px 12px 0 0;
-  background-color: #fb486b;
+  background-color: var(--primaryButtonRed);
   box-shadow: none;
 }
 
 .currentBtn:hover {
   background-color: #e3183d;
 }
-
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MEDIA QUERIES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 @media (max-width: 670px) {
   header {
     padding: 1em 1em 2em 1em;

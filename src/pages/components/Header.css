@@ -1,5 +1,5 @@
 .header {
-  height: 95vh;
+  height: 100vh;
   text-align: center;
   /* background-color: aqua; */
   animation: fadeInAnimation 3.5s 1 forwards;
@@ -29,11 +29,14 @@
   font-size: 1.2rem;
 }
 .pBottom {
-  position: relative;
-  top: 20em;
+  margin-top: 5em;
 }
+
 @media (max-width: 670px) {
   .headP {
     margin: 0 2rem;
+  }
+  .heroImg {
+    width: 70%;
   }
 }

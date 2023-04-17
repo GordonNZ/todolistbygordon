@@ -9,7 +9,10 @@
 }
 
 :root {
-  --green: rgb(49, 212, 73);
+  --primaryGreen: #31d449;
+  --backgroundGrey: rgba(162, 154, 154, 0.4);
+  --primaryButtonRed: #fb486b;
+  --borderWhite: #e7e7e7;
   --black: rgb(25, 25, 25);
 }
 /* everything */

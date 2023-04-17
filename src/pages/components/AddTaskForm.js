@@ -24,15 +24,14 @@ export default function AddTaskForm({ addTaskToArray, show, onClose }) {
     console.log(color.hex);
   };
 
-  if (completeBy === '') {
-    setCompleteBy('Unset');
-  }
-
   const submitTask = (e) => {
     e.preventDefault();
 
     if (task.length > 0) {
       addTaskToArray(task, taskTitle, color, completeBy);
+      setTask('');
+      setTaskTitle('');
+      setCompleteBy('Unset');
     } else {
       alert('Please input a task');
     }
@@ -48,9 +47,6 @@ export default function AddTaskForm({ addTaskToArray, show, onClose }) {
     }
   };
 
-  //   if (!show) {
-  //     return null;
-  //   }
   return (
     <CSSTransition in={show} unmountOnExit timeout={{ enter: 0, exit: 300 }}>
       <div className={`modal ${show ? 'show' : ''}`} onClick={onClose}>

@@ -8,20 +8,27 @@ export default function Footer() {
       <div className='spacer layer'></div>
       <footer className='footer'>
         <div className='footerMain'>
-          <p>Developed By Gordon Zam</p>
+          <p>Developed by Gordon Zam</p>
           <p>Copyright &#169; {year.getFullYear()}</p>
           <p>
             <a
               href='https://www.flaticon.com/free-icons/verified'
               title='verified icons'
+              target='blank'
             >
-              Verified icons created by Moudesain - Flaticon
-            </a>{' '}
+              icon by Moudesain - Flaticon
+            </a>
           </p>
         </div>
-        <a href='https://linkedin.com' target='blank' className='linkedin'>
-          Linkedin
-        </a>
+        <div className='footerLinks'>
+          <a
+            href='https://www.linkedin.com/in/gordonzam/'
+            target='blank'
+            className='linkedin'
+          >
+            Linkedin
+          </a>
+        </div>
       </footer>
     </div>
   );
