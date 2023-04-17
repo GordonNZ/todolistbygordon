@@ -163,6 +163,8 @@ export default function HomePage() {
             Active Tasks
           </button>
           <button
+            //data-testid for unit testing
+            data-testid='2'
             key={2}
             onClick={activeBtn}
             id={'2'}
